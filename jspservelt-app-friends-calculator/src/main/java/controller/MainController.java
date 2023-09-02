@@ -10,21 +10,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns= {"/jspservelt-app-friends-calculator/friends"})
+@WebServlet(urlPatterns= {"/jspservelt-app-friends-calculator/src/main/java/controller"})
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     public MainController() {
         super();
     }
-
+	@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
     		throws ServletException, IOException {
     	
     	RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
     }
-
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
 		
@@ -37,8 +37,7 @@ public class MainController extends HttpServlet {
         
         System.out.println(result);
         if(calculate!=null) {
-//        	PrintWriter out = response.getWriter();
-//        	out.println("<h3>Based on the name similarity, the friendship strength between "+myName+" and "+friendName+" is: "+result+"</h3>");
+
          	request.setAttribute("myName", myName);
         	request.setAttribute("friendName", friendName);
         	request.setAttribute("result", result);
