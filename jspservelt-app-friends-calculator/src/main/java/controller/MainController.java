@@ -51,5 +51,26 @@ public class MainController extends HttpServlet {
 	//Dont change the above lines of code
 	
 //	Start Enterinng your code here...
+public static int findSum(int num){
+	int sum = 0;
+	while(num>0){
+		sum = sum + (num%10);
+		num = num/10;
+	}
+	return sum;
+}
+public static int calculate(String myName, String friendName) {
+	int f1 = 0,f2 = 0, FRIENDS;
+	for(int i = 0;i<myName.length();i++){
+		f1 += (int)myName.charAt(i);
+	}
+	for(int i =0;i<friendName.length();i++){
+		f2 += (int)friendName.charAt(i);
+	}
+
+	FRIENDS = (f1 + f2) % 100;
+	return FRIENDS;
+}
 	
 }
+
