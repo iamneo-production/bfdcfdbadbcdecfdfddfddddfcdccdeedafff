@@ -60,24 +60,30 @@ public class MainController extends HttpServlet {
 	
 //	Start Enterinng your code here...
 
-public static int findSum(int num){
-	int sum = 0;
-	while(num>0){
-		sum = sum + (i%10);
-		u = i/10;
-	}
-	return sum;
-}
 public static int calculate(String myName, String friendName) {
-	int f1 = 0,f2 = 0, FRIENDS;
-	for(int i = 0;i<myName.length();i++){
-		f1 += (int)myName.charAt(i);
-	}
-	for(int i =0;i<friendName.length();i++){
-		f2 += (int)friendName.charAt(i);
-	}
-
-	FRIENDS = (f1 + f2) % 100;
-	return FRIENDS;
+    // Convert names to lowercase for case-insensitive comparison
+    myName = myName.toLowerCase();
+    friendName = friendName.toLowerCase();
+    
+    // Check if the names contain the keyword "FRIENDS"
+    if (myName.contains("friends") && friendName.contains("friends")) {
+        // If both names contain the keyword "FRIENDS," return 100% friendship
+        return 100;
+    }
+    
+    // Calculate the similarity between names
+    int similarity = 0;
+    int maxLength = Math.max(myName.length(), friendName.length());
+    
+    for (int i = 0; i < maxLength; i++) {
+        if (i < myName.length() && i < friendName.length() && myName.charAt(i) == friendName.charAt(i)) {
+            similarity++;
+        }
+    }
+    
+    // Calculate the friendship percentage based on similarity
+    double percentage = (double) similarity / maxLength * 100;
+    
+    return (int) percentage;
 }
 }
