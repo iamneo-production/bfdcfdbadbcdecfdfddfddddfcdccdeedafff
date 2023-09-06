@@ -47,6 +47,14 @@ public class MainController extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
 		dispatcher.forward(request, response);
 	}
+
+	public static int calculate(String myName, String friendName) {
+		return 0;
+	}
+
+    public static int findSum(int i) {
+        return 0;
+    }
 	
 	//Dont change the above lines of code
 	
