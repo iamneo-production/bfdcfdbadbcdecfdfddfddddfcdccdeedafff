@@ -51,26 +51,27 @@ public class MainController extends HttpServlet {
 	//Dont change the above lines of code
 	
 //	Start Enterinng your code here...
-private int calculate(String myName, String friendName) {
-	// Convert names to lowercase to make comparison case-insensitive
-	myName = myName.toLowerCase();
-	friendName = friendName.toLowerCase();
-
-	// Count the number of common characters in the two names
-	int commonCharacterCount = 0;
-
-	for (char c : myName.toCharArray()) {
-		if (friendName.contains(String.valueOf(c))) {
-			commonCharacterCount++;
-		}
+public static int findSum(int num){
+	int sum = 0;
+	while(num>0){
+		sum = sum + (num%10);
+		num = num/10;
+	}
+	return sum;
+}
+public static int calculate(String myName, String friendName) {
+	int f1 = 0,f2 = 0, FRIENDS;
+	for(int i = 0;i<myName.length();i++){
+		f1 += (int)myName.charAt(i);
+	}
+	for(int i =0;i<friendName.length();i++){
+		f2 += (int)friendName.charAt(i);
 	}
 
-	// Calculate friendship percentage as a ratio of common characters to the length of the longer name
-	int maxLength = Math.max(myName.length(), friendName.length());
-	int friendshipPercentage = (commonCharacterCount * 100) / maxLength;
-
-	return friendshipPercentage;
+	FRIENDS = (f1 + f2) % 100;
+	return FRIENDS;
 }
+	
 }
 
 
