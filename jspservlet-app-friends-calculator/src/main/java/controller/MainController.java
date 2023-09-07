@@ -58,25 +58,27 @@ public class MainController extends HttpServlet {
         return sum;
     }
 
-    public static int calculate(String myName, String friendName) {
-        if (myName == null || friendName == null) {
-            throw new IllegalArgumentException("Input names cannot be null.");
-        }
-    
-        String combined = myName + friendName;
-        int totalLength = combined.length();
-        int keywordLength = "FRIENDS".length();
-        int count = 0;
-    
-        for (int i = 0; i <= totalLength - keywordLength; i++) {
-            if (combined.substring(i, i + keywordLength).equalsIgnoreCase("FRIENDS")) {
-                count++;
-            }
-        }
-    
-        int percentage = (count * keywordLength * 100) / totalLength;
-        return percentage;
+    public int calculate(String name1, String name2) {
+    if (name1 == null || name2 == null) {
+        return 0; // You can choose a default value or handle it differently
     }
+
+    String combined = name1 + name2;
+    int count = 0;
+
+    for (int i = 0; i < combined.length(); i++) {
+        if (combined.substring(i).startsWith("FRIENDS")) {
+            count++;
+        }
+    }
+
+    int total = combined.length();
+    int percentage = (count * "FRIENDS".length() * 100) / total;
+
+    return percentage;
+}
+
+    
     
     
     
