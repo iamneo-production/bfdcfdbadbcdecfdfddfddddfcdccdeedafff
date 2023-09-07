@@ -60,7 +60,7 @@ public class MainController extends HttpServlet {
 
     public static int calculate(String myName, String friendName) {
         if (myName == null || friendName == null) {
-            return 0; // You can choose a default value or handle it differently
+            throw new IllegalArgumentException("Input names cannot be null.");
         }
     
         String combined = myName + friendName;
@@ -77,6 +77,7 @@ public class MainController extends HttpServlet {
         int percentage = (count * keywordLength * 100) / totalLength;
         return percentage;
     }
+    
     
     
 }
