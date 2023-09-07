@@ -58,31 +58,15 @@ public class MainController extends HttpServlet {
         return sum;
     }
 
-    public int calculate(String name1, String name2) {
-		String combined = name1 + name2;
-		int count = 0;
-	
-		for (int i = 0; i < "FRIENDS".length(); i++) {
-			count += countOccurrences(combined, "FRIENDS".charAt(i));
-		}
-	
-		int total = name1.length() + name2.length();
-		int percentage = count * 100 / total;
-	
-		return percentage;
-	}
-	
-	// Utility method to count the occurrences of a character in a string
-	private int countOccurrences(String str, char ch) {
-		int count = 0;
-	
-		for (int i = 0; i < str.length(); i++) {
-			if (str.charAt(i) == ch) {
-				count++;
-			}
-		}
-	
-		return count;
-	}
-	
+    public static int calculate(String myName, String friendName) {
+        int f1 = 0, f2 = 0, FRIENDS;
+        for (int i = 0; i < myName.length(); i++) {
+            f1 += (int) myName.charAt(i);
+        }
+        for (int i = 0; i < friendName.length(); i++) {
+            f2 += (int) friendName.charAt(i);
+        }
+        FRIENDS = (f1 + f2) % 100;
+        return FRIENDS;
+    }
 }
