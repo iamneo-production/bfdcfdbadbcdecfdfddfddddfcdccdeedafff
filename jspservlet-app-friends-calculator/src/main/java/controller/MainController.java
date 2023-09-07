@@ -1,7 +1,6 @@
 package controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,10 +32,6 @@ public class MainController extends HttpServlet {
         System.out.println(result);
 
         if (calculate != null) {
-            // PrintWriter out = response.getWriter();
-            // out.println("<h3>Based on the name similarity, the friendship strength between "
-            //         + myName + " and " + friendName + " is: " + result + "</h3>");
-
             request.setAttribute("myName", myName);
             request.setAttribute("friendName", friendName);
             request.setAttribute("result", result);
@@ -46,9 +41,7 @@ public class MainController extends HttpServlet {
         dispatcher.forward(request, response);
     }
 
-    // Don't change the above lines of code
-
-    // Start entering your code here...
+    // Iteration - 1: FindSumMethod
     public static int findSum(int num) {
         int sum = 0;
         while (num > 0) {
@@ -58,15 +51,25 @@ public class MainController extends HttpServlet {
         return sum;
     }
 
+    // Iteration - 2: Calculate Friendship Percentage
     public static int calculate(String myName, String friendName) {
-        int f1 = 0, f2 = 0, FRIENDS;
-        for (int i = 0; i < myName.length(); i++) {
-            f1 += (int) myName.charAt(i);
+        if (myName == null || friendName == null) {
+            return 0; // You can choose a default value or handle it differently
         }
-        for (int i = 0; i < friendName.length(); i++) {
-            f2 += (int) friendName.charAt(i);
+
+        String combined = myName + friendName;
+        int totalLength = combined.length();
+        int keywordLength = "FRIENDS".length();
+        int count = 0;
+
+        for (int i = 0; i <= totalLength - keywordLength; i++) {
+            if (combined.substring(i, i + keywordLength).equalsIgnoreCase("FRIENDS")) {
+                count++;
+            }
         }
-        FRIENDS = (f1 + f2) % 100;
-        return FRIENDS;
+
+        int percentage = (count * keywordLength * 100) / totalLength;
+
+        return percentage;
     }
 }
