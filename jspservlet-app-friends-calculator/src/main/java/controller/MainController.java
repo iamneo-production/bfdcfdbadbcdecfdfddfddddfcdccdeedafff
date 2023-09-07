@@ -58,28 +58,15 @@ public class MainController extends HttpServlet {
         return sum;
     }
 
-    public int calculate(String name1, String name2) {
-    if (name1 == null || name2 == null) {
-        return 0; // You can choose a default value or handle it differently
-    }
-
-    String combined = name1 + name2;
-    int count = 0;
-
-    for (int i = 0; i < combined.length(); i++) {
-        if (combined.substring(i).startsWith("FRIENDS")) {
-            count++;
+    public static int calculate(String myName, String friendName) {
+        int f1 = 0, f2 = 0, FRIENDS;
+        for (int i = 0; i < myName.length(); i++) {
+            f1 += (int) myName.charAt(i);
         }
+        for (int i = 0; i < friendName.length(); i++) {
+            f2 += (int) friendName.charAt(i);
+        }
+        FRIENDS = (f1 + f2) % 100;
+        return FRIENDS;
     }
-
-    int total = combined.length();
-    int percentage = (count * "FRIENDS".length() * 100) / total;
-
-    return percentage;
-}
-
-    
-    
-    
-    
 }
