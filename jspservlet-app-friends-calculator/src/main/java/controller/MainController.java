@@ -59,14 +59,24 @@ public class MainController extends HttpServlet {
     }
 
     public static int calculate(String myName, String friendName) {
-        int f1 = 0, f2 = 0, FRIENDS;
-        for (int i = 0; i < myName.length(); i++) {
-            f1 += (int) myName.charAt(i);
+        if (myName == null || friendName == null) {
+            return 0; // You can choose a default value or handle it differently
         }
-        for (int i = 0; i < friendName.length(); i++) {
-            f2 += (int) friendName.charAt(i);
+    
+        String combined = myName + friendName;
+        int totalLength = combined.length();
+        int keywordLength = "FRIENDS".length();
+        int count = 0;
+    
+        for (int i = 0; i <= totalLength - keywordLength; i++) {
+            if (combined.substring(i, i + keywordLength).equalsIgnoreCase("FRIENDS")) {
+                count++;
+            }
         }
-        FRIENDS = (f1 + f2) % 100;
-        return FRIENDS;
+    
+        int percentage = (count * keywordLength * 100) / totalLength;
+        return percentage;
     }
+    
+    
 }
